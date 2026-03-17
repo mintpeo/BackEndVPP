@@ -27,22 +27,22 @@ public class Product {
     private String category;
 
     @JsonProperty("price")
-    private int price;
+    private Integer price;
 
     @JsonProperty("originalPrice")
-    private int originalPrice;
+    private Integer originalPrice;
 
     @JsonProperty("currency")
     private String currency;
 
     @JsonProperty("stock")
-    private int stock;
+    private Integer stock;
 
     @JsonProperty("rating")
-    private double rating;
+    private Double rating;
 
     @JsonProperty("review")
-    private int review;
+    private Integer review;
 
     @JsonProperty("description")
     private String description;

@@ -2,10 +2,7 @@ package com.thienlong.vppbackend.controller;
 
 import com.thienlong.vppbackend.model.Product;
 import com.thienlong.vppbackend.service.ProductSer;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,11 @@ public class ProductCon {
     @GetMapping("/all")
     public List<Product> getAllProducts() {
         return ser.getAllProducts();
+    }
+
+    @GetMapping("/{id}")
+    public Product getProductById(@PathVariable Long id) {
+        List<Product> products = ser.getAllProducts();
+        return products.stream().filter(p -> p.getId().equals(id)).findFirst().get();
     }
 }

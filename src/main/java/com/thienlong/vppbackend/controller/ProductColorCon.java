@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/product_colors")
+@RequestMapping("/api/product_color")
 @CrossOrigin(origins = "${app.frontend.url}")
 public class ProductColorCon {
     private final ProductColorSer ser;

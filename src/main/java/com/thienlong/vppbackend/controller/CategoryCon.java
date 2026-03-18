@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/api/category")
 @CrossOrigin(origins = "${app.frontend.url}")
 public class CategoryCon {
     private final CategorySer ser;

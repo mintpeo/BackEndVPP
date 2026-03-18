@@ -2,15 +2,12 @@ package com.thienlong.vppbackend.controller;
 
 import com.thienlong.vppbackend.model.User;
 import com.thienlong.vppbackend.service.UserSer;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
 @CrossOrigin(origins = "${app.frontend.url}")
 public class UserCon {
     private final UserSer ser;
@@ -22,5 +19,13 @@ public class UserCon {
     @GetMapping("/all")
     public List<User> getAllUsers() {
         return ser.getAllUsers();
+    }
+
+    @GetMapping("/login")
+    public User checkLogin(@RequestParam String email, @RequestParam String pass) {
+        List<User> users = ser.getAllUsers();
+
+        return users.stream().filter(e -> e.getEmail().equals(email))
+                .filter(p -> p.getPass().equals(pass)).findFirst().get();
     }
 }

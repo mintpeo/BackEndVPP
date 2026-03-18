@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/product_images")
+@RequestMapping("/api/product_image")
 @CrossOrigin(origins = "${app.frontend.url}")
 public class ProductImageCon {
     private final ProductImageSer ser;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/infoSales")
+@RequestMapping("/api/infoSale")
 @CrossOrigin(origins = "${app.frontend.url}")
 public class InfoSaleCon {
     private final InfoSaleSer ser;

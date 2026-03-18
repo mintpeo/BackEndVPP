@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/banners")
+@RequestMapping("/api/banner")
 @CrossOrigin(origins = "${app.frontend.url}")
 public class BannerCon {
     private final BannerSer ser;

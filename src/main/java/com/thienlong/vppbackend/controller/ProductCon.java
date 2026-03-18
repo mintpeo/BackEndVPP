@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api/product")
 @CrossOrigin(origins = "${app.frontend.url}")
 public class ProductCon {
     private final ProductSer ser;

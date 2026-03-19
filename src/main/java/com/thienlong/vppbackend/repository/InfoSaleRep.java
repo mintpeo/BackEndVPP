@@ -1,16 +1,16 @@
 package com.thienlong.vppbackend.repository;
 
-import com.thienlong.vppbackend.model.InfoSale;
+import com.thienlong.vppbackend.model.entity.InfoSale;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
 @Repository
-public class InfoSaleRes {
+public class InfoSaleRep {
     private final WebClient client;
 
-    public InfoSaleRes(WebClient client) {
+    public InfoSaleRep(WebClient client) {
         this.client = client;
     }
 

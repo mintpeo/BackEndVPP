@@ -1,16 +1,16 @@
 package com.thienlong.vppbackend.repository;
 
-import com.thienlong.vppbackend.model.Product;
+import com.thienlong.vppbackend.model.entity.Product;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
 @Repository
-public class ProductRes {
+public class ProductRep {
     private final WebClient client;
 
-    public ProductRes(WebClient client) {
+    public ProductRep(WebClient client) {
         this.client = client;
     }
 

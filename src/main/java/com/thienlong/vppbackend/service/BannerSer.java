@@ -1,20 +1,20 @@
 package com.thienlong.vppbackend.service;
 
-import com.thienlong.vppbackend.model.Banner;
-import com.thienlong.vppbackend.repository.BannerRes;
+import com.thienlong.vppbackend.model.entity.Banner;
+import com.thienlong.vppbackend.repository.BannerRep;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class BannerSer {
-    private final BannerRes res;
+    private final BannerRep rep;
 
-    public BannerSer(BannerRes res) {
-        this.res = res;
+    public BannerSer(BannerRep rep) {
+        this.rep = rep;
     }
 
     public List<Banner> getAllBanners() {
-        return res.findAll();
+        return rep.findAll();
     }
 }

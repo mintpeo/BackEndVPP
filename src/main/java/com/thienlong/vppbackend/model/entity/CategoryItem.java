@@ -1,4 +1,4 @@
-package com.thienlong.vppbackend.model;
+package com.thienlong.vppbackend.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -8,16 +8,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InfoSale {
+public class CategoryItem {
     @JsonProperty("id")
     private Long id;
 
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("category_id")
+    private Integer cateId;
 
-    @JsonProperty("sku")
-    private String sku;
-
-    @JsonProperty("image")
-    private String image;
+    @JsonProperty("item")
+    private String item;
 }

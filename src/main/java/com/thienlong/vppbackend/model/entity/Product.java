@@ -1,4 +1,4 @@
-package com.thienlong.vppbackend.model;
+package com.thienlong.vppbackend.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

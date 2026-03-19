@@ -1,6 +1,6 @@
 package com.thienlong.vppbackend.controller;
 
-import com.thienlong.vppbackend.model.Product;
+import com.thienlong.vppbackend.model.entity.Product;
 import com.thienlong.vppbackend.service.ProductSer;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +23,6 @@ public class ProductCon {
 
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable Long id) {
-        List<Product> products = ser.getAllProducts();
-        return products.stream().filter(p -> p.getId().equals(id)).findFirst().get();
+        return ser.getProductById(id);
     }
 }

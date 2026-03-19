@@ -1,20 +1,25 @@
-package com.thienlong.vppbackend.model;
+package com.thienlong.vppbackend.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductImage {
+public class Cart {
     @JsonProperty("id")
     private Long id;
 
-    @JsonProperty("product_id")
-    private String name;
+    @JsonProperty("user_id")
+    private Long user_id;
 
-    @JsonProperty("image")
-    private String image;
+    @JsonProperty("product_id")
+    private Long product_id;
+
+    @JsonProperty("quantity")
+    private int quantity;
 }

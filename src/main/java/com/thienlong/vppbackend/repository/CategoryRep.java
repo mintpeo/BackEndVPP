@@ -1,16 +1,16 @@
 package com.thienlong.vppbackend.repository;
 
-import com.thienlong.vppbackend.model.Category;
+import com.thienlong.vppbackend.model.entity.Category;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
 @Repository
-public class CategoryRes {
+public class CategoryRep {
     private final WebClient client;
 
-    public CategoryRes(WebClient client) {
+    public CategoryRep(WebClient client) {
         this.client = client;
     }
 

@@ -1,6 +1,6 @@
 package com.thienlong.vppbackend.controller;
 
-import com.thienlong.vppbackend.model.InfoSale;
+import com.thienlong.vppbackend.model.entity.InfoSale;
 import com.thienlong.vppbackend.service.InfoSaleSer;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

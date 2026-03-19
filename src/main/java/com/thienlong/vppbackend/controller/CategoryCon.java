@@ -1,6 +1,6 @@
 package com.thienlong.vppbackend.controller;
 
-import com.thienlong.vppbackend.model.Category;
+import com.thienlong.vppbackend.model.entity.Category;
 import com.thienlong.vppbackend.service.CategorySer;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

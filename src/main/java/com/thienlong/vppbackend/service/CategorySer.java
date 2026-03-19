@@ -1,20 +1,20 @@
 package com.thienlong.vppbackend.service;
 
-import com.thienlong.vppbackend.model.Category;
-import com.thienlong.vppbackend.repository.CategoryRes;
+import com.thienlong.vppbackend.model.entity.Category;
+import com.thienlong.vppbackend.repository.CategoryRep;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class CategorySer {
-    private final CategoryRes res;
+    private final CategoryRep rep;
 
-    public CategorySer(CategoryRes res) {
-        this.res = res;
+    public CategorySer(CategoryRep rep) {
+        this.rep = rep;
     }
 
     public List<Category> getAllCategories() {
-        return res.findAll();
+        return rep.findAll();
     }
 }

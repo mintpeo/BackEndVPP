@@ -5,5 +5,8 @@ import lombok.Data;
 @Data
 public class ProductInCartRes {
     private String name;
-//    private
+    private String image;
+    private String type;
+    private String price;
+    private String originalPrice;
 }

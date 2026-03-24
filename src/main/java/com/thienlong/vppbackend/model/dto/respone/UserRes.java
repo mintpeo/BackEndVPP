@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserRes {
+    private String id;
     private String email;
     private String lastName;
     private String firstName;

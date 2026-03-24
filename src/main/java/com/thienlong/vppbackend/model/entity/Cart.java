@@ -21,5 +21,5 @@ public class Cart {
     private Long product_id;
 
     @JsonProperty("quantity")
-    private int quantity;
+    private Integer quantity;
 }

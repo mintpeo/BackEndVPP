@@ -1,7 +1,6 @@
 package com.thienlong.vppbackend.repository;
 
 import com.thienlong.vppbackend.model.dto.request.CartReq;
-import com.thienlong.vppbackend.model.dto.request.ProductInCartReq;
 import com.thienlong.vppbackend.model.dto.respone.CartRes;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -33,26 +32,19 @@ public class CartRep {
                     bodyValue(Map.of("quantity", quantity)).retrieve().toBodilessEntity().block();
             return true;
         } catch (Exception e) {
-            return false;
-        }
-    }
-
-    // Add Product To table product_in_cart
-    public boolean saveProductInCart(ProductInCartReq product) {
-        try {
-            client.post().uri("/product_in_cart").bodyValue(product).retrieve().toBodilessEntity().block();
-            return true;
-        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
 
     // Add To Cart
-    public boolean addProductInCart(CartReq cart) {
+    public boolean addProductToCart(CartReq cart) {
         try {
-            client.post().uri("/carts").bodyValue(cart).retrieve().toBodilessEntity().block();
+            client.post().uri(uriBuilder -> uriBuilder.path("/carts").build())
+                    .bodyValue(cart).retrieve().toBodilessEntity().block();
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }

@@ -27,13 +27,6 @@ public class CartSer {
 
     // Add Product To Cart
     public boolean addToCart(CartReq cart) {
-        boolean saveProduct = rep.saveProductInCart(cart.getProduct());
-
-        if (saveProduct) {
-            cart.setProductCartId(cart.getProduct().getProduct_id());
-            return rep.addProductInCart(cart);
-        }
-
-        return false;
+        return rep.addProductToCart(cart);
     }
 }

@@ -1,20 +1,12 @@
 package com.thienlong.vppbackend.model.dto.request;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class CartReq {
-    @JsonProperty("user_id")
     private Integer user_id;
-
-    @JsonProperty("quantity")
+    private Integer product_id;
     private int quantity;
-
-    @JsonIgnore
-    private ProductInCartReq product;
-
-    @JsonProperty("productCart_id")
-    private Integer productCartId;
+    private String image;
+    private String type;
 }

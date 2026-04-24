@@ -2,6 +2,7 @@ package com.thienlong.vppbackend.controller;
 
 import com.thienlong.vppbackend.model.dto.request.LoginUserReq;
 import com.thienlong.vppbackend.model.dto.request.PassChangeReq;
+import com.thienlong.vppbackend.model.dto.request.SignUserWithIdReq;
 import com.thienlong.vppbackend.model.dto.respone.UserRes;
 import com.thienlong.vppbackend.model.entity.User;
 import com.thienlong.vppbackend.model.dto.request.SignUserReq;
@@ -22,11 +23,6 @@ public class UserCon {
         this.ser = ser;
     }
 
-    @GetMapping("/all")
-    public List<User> getAllUsers() {
-        return ser.getAllUsers();
-    }
-
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginUserReq user) {
         UserRes res = ser.loginUser(user);
@@ -36,7 +32,7 @@ public class UserCon {
     }
 
     @PostMapping("/sign")
-    public SignUserReq signUser(@RequestBody SignUserReq dto) {
+    public SignUserWithIdReq signUser(@RequestBody SignUserReq dto) {
         return ser.signUser(dto);
     }
 

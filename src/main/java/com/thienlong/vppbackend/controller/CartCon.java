@@ -1,6 +1,7 @@
 package com.thienlong.vppbackend.controller;
 
 import com.thienlong.vppbackend.model.dto.request.CartReq;
+import com.thienlong.vppbackend.model.dto.request.DeleteCartReq;
 import com.thienlong.vppbackend.model.dto.respone.CartRes;
 import com.thienlong.vppbackend.service.CartSer;
 import org.springframework.web.bind.annotation.*;
@@ -31,5 +32,10 @@ public class CartCon {
     @PostMapping("/add")
     public boolean addToCart(@RequestBody CartReq cart) {
         return ser.addToCart(cart);
+    }
+
+    @DeleteMapping("/delete")
+    public boolean deleteProduct(@RequestBody DeleteCartReq req) {
+        return ser.deleteProductInCart(req);
     }
 }

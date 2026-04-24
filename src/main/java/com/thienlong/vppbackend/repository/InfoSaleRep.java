@@ -1,6 +1,7 @@
 package com.thienlong.vppbackend.repository;
 
 import com.thienlong.vppbackend.model.entity.InfoSale;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public class InfoSaleRep {
     private final WebClient client;
 
-    public InfoSaleRep(WebClient client) {
+    public InfoSaleRep(@Qualifier("guestsClient") WebClient client) {
         this.client = client;
     }
 

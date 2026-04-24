@@ -1,14 +1,10 @@
 package com.thienlong.vppbackend.model.dto.respone;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserRes {
     private String id;
     private String email;

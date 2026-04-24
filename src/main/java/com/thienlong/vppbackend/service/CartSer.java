@@ -1,6 +1,7 @@
 package com.thienlong.vppbackend.service;
 
 import com.thienlong.vppbackend.model.dto.request.CartReq;
+import com.thienlong.vppbackend.model.dto.request.DeleteCartReq;
 import com.thienlong.vppbackend.model.dto.respone.CartRes;
 import com.thienlong.vppbackend.repository.CartRep;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,10 @@ public class CartSer {
     // Add Product To Cart
     public boolean addToCart(CartReq cart) {
         return rep.addProductToCart(cart);
+    }
+
+    // Delete Product In Cart
+    public boolean deleteProductInCart(DeleteCartReq req) {
+        return rep.deteleCartById(req);
     }
 }

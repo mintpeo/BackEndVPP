@@ -33,11 +33,11 @@ public class VerificationSer {
         entity.setVerified(false);
 
         // Set up send mail
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setTo(email);
-//        message.setSubject("Your Verification Code");
-//        message.setText("Your code is: " + code);
-//        mailSender.send(message);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Your Verification Code");
+        message.setText("Your code is: " + code);
+        mailSender.send(message);
 
         return entity;
     }

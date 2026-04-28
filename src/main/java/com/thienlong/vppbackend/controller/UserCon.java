@@ -2,16 +2,13 @@ package com.thienlong.vppbackend.controller;
 
 import com.thienlong.vppbackend.model.dto.request.LoginUserReq;
 import com.thienlong.vppbackend.model.dto.request.PassChangeReq;
-import com.thienlong.vppbackend.model.dto.request.SignUserWithIdReq;
-import com.thienlong.vppbackend.model.dto.respone.UserRes;
-import com.thienlong.vppbackend.model.entity.User;
+import com.thienlong.vppbackend.model.dto.SignUserWithToken;
 import com.thienlong.vppbackend.model.dto.request.SignUserReq;
 import com.thienlong.vppbackend.service.UserSer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 @RestController
 @RequestMapping("/api/user")
@@ -25,15 +22,17 @@ public class UserCon {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginUserReq user) {
-        UserRes res = ser.loginUser(user);
-
-        if (res != null) return ResponseEntity.ok(res);
-        else return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Sai email hoặc mật khẩu");
+        try {
+            SignUserWithToken res = ser.loginUser(user);
+            return ResponseEntity.ok(res);
+        } catch (WebClientResponseException.BadRequest e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Sai email hoặc mật khẩu");
+        }
     }
 
     @PostMapping("/sign")
-    public SignUserWithIdReq signUser(@RequestBody SignUserReq dto) {
-        return ser.signUser(dto);
+    public SignUserWithToken signUser(@RequestBody SignUserReq req) {
+        return ser.signUser(req);
     }
 
     @GetMapping("/checkEmail")

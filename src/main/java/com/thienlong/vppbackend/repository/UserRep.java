@@ -4,13 +4,12 @@ import com.thienlong.vppbackend.model.dto.request.*;
 import com.thienlong.vppbackend.model.dto.respone.SupabaseAuthRes;
 import com.thienlong.vppbackend.model.dto.respone.UserRes;
 import com.thienlong.vppbackend.model.dto.respone.UserVerifyRes;
-import com.thienlong.vppbackend.model.entity.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Repository
 public class UserRep {
@@ -45,18 +44,35 @@ public class UserRep {
     }
 
     // Sign User
-    public SignUserWithIdReq saveNewUser(SignUserWithIdReq req, String accToken) {
-        return guestsClient.post().uri("/users").
-                header("Authorization", "Bearer " + accToken).
-                bodyValue(req).retrieve().bodyToMono(SignUserWithIdReq.class).block();
+    public UserRes saveNewUser(SignUserReq req, UUID id, String accToken) {
+        Map<String, Object> body = Map.of(
+                "id", id,
+                "email", req.getEmail(),
+                "password", req.getPassword(),
+                "firstName", req.getFirstName(),
+                "lastName", req.getLastName(),
+                "phone", req.getPhone(),
+                "role", req.getRole()
+        );
+
+        return guestsClient.post().uri("/users")
+                .header("Authorization", "Bearer " + accToken)
+                .header("Content-Type", "application/json")
+                .header("Prefer", "return=representation")
+                .bodyValue(body).retrieve().bodyToFlux(UserRes.class).blockFirst();
     }
 
     // Login User
-    public UserRes checkLoginUser(LoginUserReq user) {
-        return guestsClient.get().uri(uriBuilder -> uriBuilder.path("/users")
-                .queryParam("email", "eq." + user.getEmail())
-                .queryParam("password", "eq." + user.getPass())
-                .build()).retrieve().bodyToFlux(UserRes.class).blockFirst();
+    public SupabaseAuthRes checkLoginUser(LoginUserReq user) {
+        return userVerifiedClient.post().uri("/token?grant_type=password")
+                .bodyValue(user).retrieve().bodyToFlux(SupabaseAuthRes.class).blockFirst();
+    }
+
+    // Get Info User
+    public UserRes getInfoUser(String accToken) {
+        return guestsClient.get().uri("/users")
+                .header("Authorization", "Bearer " + accToken)
+                .retrieve().bodyToFlux(UserRes.class).blockFirst();
     }
 
     // Check Email
@@ -67,6 +83,14 @@ public class UserRep {
                 .retrieve().bodyToFlux(EmailCheckReq.class).blockFirst();
 
         return res != null;
+    }
+
+    // Save Info User Path
+    public InfoUserReq saveInfoUserPath(InfoUserReq req) {
+        return guestsClient.patch().uri(uriBuilder -> uriBuilder.path("/users")
+                .queryParam("id", "eq." + req.getId()).build())
+                .header("Authorization", "Bearer " + req.getAccToken())
+                .bodyValue(req).retrieve().bodyToMono(InfoUserReq.class).block();
     }
 
     // Change Pass

@@ -1,7 +1,8 @@
 package com.thienlong.vppbackend.model.dto.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+
+import java.util.UUID;
 
 @Data
 public class SignUserReq {
@@ -10,4 +11,5 @@ public class SignUserReq {
     private String email;
     private String phone;
     private String password;
+    private int role = 1;
 }

@@ -4,7 +4,7 @@ import com.thienlong.vppbackend.service.VerificationSer;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/authVerify")
 @CrossOrigin(origins = "${app.frontend.url}")
 public class VerificationCon {
     private final VerificationSer ser;

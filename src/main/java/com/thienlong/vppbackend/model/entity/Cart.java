@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -15,11 +15,5 @@ public class Cart {
     private Long id;
 
     @JsonProperty("user_id")
-    private Long user_id;
-
-    @JsonProperty("product_id")
-    private Long product_id;
-
-    @JsonProperty("quantity")
-    private Integer quantity;
+    private UUID userId;
 }

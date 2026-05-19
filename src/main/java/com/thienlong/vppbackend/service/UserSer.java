@@ -8,6 +8,7 @@ import com.thienlong.vppbackend.model.dto.respone.SupabaseAuthRes;
 import com.thienlong.vppbackend.model.dto.respone.UserRes;
 import com.thienlong.vppbackend.model.dto.respone.UserVerifyRes;
 import com.thienlong.vppbackend.model.dto.request.SignUserReq;
+import com.thienlong.vppbackend.model.entity.User;
 import com.thienlong.vppbackend.repository.UserRep;
 import org.springframework.stereotype.Service;
 
@@ -46,19 +47,12 @@ public class UserSer {
 
         SignUserWithToken savedUser = new SignUserWithToken();
         // Info
-        savedUser.setId(id);
-        savedUser.setEmail(user.getEmail());
-        savedUser.setFirstName(user.getFirstName());
         savedUser.setLastName(user.getLastName());
-        savedUser.setPhone(user.getPhone());
-        savedUser.setAddress(user.getAddress());
-        savedUser.setDateOfBirth(user.getDate());
-        savedUser.setRole(user.getRole());
-
         // Token
         savedUser.setAccessToken(auth.getAccessToken());
         savedUser.setRefreshToken(auth.getRefreshToken());
         savedUser.setExpiresIn(auth.getExpiresIn());
+
 
         return savedUser;
     }
@@ -66,19 +60,11 @@ public class UserSer {
     // Login User
     public SignUserWithToken loginUser(LoginUserReq req) {
         SupabaseAuthRes auth = rep.checkLoginUser(req);
-        UserRes user = rep.getInfoUser(auth.getAccessToken());
+        UserRes user = rep.getInfoUserByAT(auth.getAccessToken());
 
         SignUserWithToken savedUser = new SignUserWithToken();
         // Info
-        savedUser.setId(user.getId());
-        savedUser.setEmail(user.getEmail());
-        savedUser.setFirstName(user.getFirstName());
         savedUser.setLastName(user.getLastName());
-        savedUser.setPhone(user.getPhone());
-        savedUser.setAddress(user.getAddress());
-        savedUser.setDateOfBirth(user.getDate());
-        savedUser.setRole(user.getRole());
-
         // Token
         savedUser.setAccessToken(auth.getAccessToken());
         savedUser.setRefreshToken(auth.getRefreshToken());

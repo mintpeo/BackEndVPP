@@ -68,8 +68,8 @@ public class UserRep {
                 .bodyValue(user).retrieve().bodyToFlux(SupabaseAuthRes.class).blockFirst();
     }
 
-    // Get Info User
-    public UserRes getInfoUser(String accToken) {
+    // Get Info User By Access Token
+    public UserRes getInfoUserByAT(String accToken) {
         return guestsClient.get().uri("/users")
                 .header("Authorization", "Bearer " + accToken)
                 .retrieve().bodyToFlux(UserRes.class).blockFirst();

@@ -54,13 +54,13 @@ public class SupabaseConfig {
     // HAM GHI LOI
 //    return userVerifiedClient.post().uri("/token?grant_type=refresh_token")
 //                .bodyValue(body)
+//                .retrieve()
 //                .onStatus(HttpStatusCode::isError, response ->
 //                      response.bodyToMono(String.class).flatMap(errorBody -> {
 //                      //  In ra lỗi cụ thể như: "Invalid refresh token" hoặc "Token expired"
 //                      System.err.println("Supabase Refresh Error: " + errorBody);
 //                      return Mono.error(new RuntimeException(errorBody));
 //                      }))
-//                  .retrieve()
 //                  .bodyToMono(SupabaseAuthRes .class).block(); // Mono tra ve 1 Object, Flux tra ve 1 list
 
 }

@@ -20,4 +20,10 @@ public class ProductRep {
                         .queryParam("select", "*,images:product_images(*),colors:product_colors(*,info:name_colors(*))").build())
                 .retrieve().bodyToFlux(Product.class).collectList().block();
     }
+
+    public Product findProductById(long productId) {
+        return client.get().uri(uriBuilder -> uriBuilder.path("/products")
+                .queryParam("select", "*,images:product_images(*),colors:product_colors(*,info:name_colors(*))")
+                .queryParam("id", "eq." + productId).build()).retrieve().bodyToFlux(Product.class).blockFirst();
+    }
 }

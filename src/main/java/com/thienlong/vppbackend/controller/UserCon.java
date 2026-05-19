@@ -4,6 +4,7 @@ import com.thienlong.vppbackend.model.dto.request.LoginUserReq;
 import com.thienlong.vppbackend.model.dto.request.PassChangeReq;
 import com.thienlong.vppbackend.model.dto.SignUserWithToken;
 import com.thienlong.vppbackend.model.dto.request.SignUserReq;
+import com.thienlong.vppbackend.model.dto.respone.UserRes;
 import com.thienlong.vppbackend.service.UserSer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,11 @@ public class UserCon {
     @PostMapping("/sign")
     public SignUserWithToken signUser(@RequestBody SignUserReq req) {
         return ser.signUser(req);
+    }
+
+    @GetMapping("/info")
+    public UserRes getInfoUserByAt(@RequestHeader String AT) {
+        return ser.getInfoUserByAT(AT);
     }
 
     @GetMapping("/checkEmail")

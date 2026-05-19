@@ -3,11 +3,11 @@ package com.thienlong.vppbackend.controller;
 import com.thienlong.vppbackend.model.dto.request.CartReq;
 import com.thienlong.vppbackend.model.dto.request.DeleteCartReq;
 import com.thienlong.vppbackend.model.dto.respone.CartRes;
+import com.thienlong.vppbackend.model.entity.Cart;
 import com.thienlong.vppbackend.service.CartSer;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/cart")
@@ -20,8 +20,8 @@ public class CartCon {
     }
 
     @GetMapping
-    public List<CartRes> getCartById(@RequestParam int userId) {
-        return ser.getCartById(userId);
+    public List<CartRes> getCartById(@RequestHeader String AT) {
+        return ser.getCartById(AT);
     }
 
     @PatchMapping("/quantity")
@@ -30,8 +30,13 @@ public class CartCon {
     }
 
     @PostMapping("/add")
-    public boolean addToCart(@RequestBody CartReq cart) {
-        return ser.addToCart(cart);
+    public boolean addToCart(@RequestBody CartReq req, @RequestHeader String AT) {
+        return ser.addToCart(req, AT);
+    }
+
+    @GetMapping("/get")
+    public Cart check(@RequestHeader String AT) {
+        return ser.check(AT);
     }
 
     @DeleteMapping("/delete")

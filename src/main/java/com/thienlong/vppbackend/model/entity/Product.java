@@ -48,6 +48,5 @@ public class Product {
     private String description;
 
     private List<ProductColor> colors;
-
     private List<ProductImage> images;
 }

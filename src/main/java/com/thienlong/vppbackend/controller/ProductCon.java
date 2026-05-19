@@ -1,5 +1,6 @@
 package com.thienlong.vppbackend.controller;
 
+import com.thienlong.vppbackend.model.dto.respone.ShowProductRes;
 import com.thienlong.vppbackend.model.entity.Product;
 import com.thienlong.vppbackend.service.ProductSer;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +18,12 @@ public class ProductCon {
     }
 
     @GetMapping("/all")
-    public List<Product> getAllProducts() {
-        return ser.getAllProducts();
+    public List<ShowProductRes> getAllProducts() {
+        return ser.getProductToShow();
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable Long id) {
+    public ShowProductRes getProductById(@PathVariable Long id) {
         return ser.getProductById(id);
     }
 }

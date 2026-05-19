@@ -4,11 +4,13 @@ import lombok.Data;
 
 @Data
 public class CartRes {
-    private Integer id;
-    private Integer user_id;
-    private Integer quantity;
-    private Integer product_id;
+    private long id;
+    private int quantity;
+    private long productId;
     private String image;
     private String type;
-    private ProductInCartRes product;
+    private String name;
+    private int price;
+    private int originalPrice;
+    private String currency;
 }

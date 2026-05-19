@@ -8,8 +8,6 @@ import com.thienlong.vppbackend.service.CartSer;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
-
 
 @RestController
 @RequestMapping("/api/cart")
@@ -22,8 +20,8 @@ public class CartCon {
     }
 
     @GetMapping
-    public List<CartRes> getCartById(@RequestParam int userId) {
-        return ser.getCartById(userId);
+    public List<CartRes> getCartById(@RequestHeader String AT) {
+        return ser.getCartById(AT);
     }
 
     @PatchMapping("/quantity")

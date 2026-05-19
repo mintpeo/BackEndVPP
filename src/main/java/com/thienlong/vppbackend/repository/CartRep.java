@@ -2,7 +2,6 @@ package com.thienlong.vppbackend.repository;
 
 import com.thienlong.vppbackend.model.dto.request.CartReq;
 import com.thienlong.vppbackend.model.dto.request.DeleteCartReq;
-import com.thienlong.vppbackend.model.dto.respone.CartRes;
 import com.thienlong.vppbackend.model.entity.Cart;
 import com.thienlong.vppbackend.model.entity.CartItem;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,11 +22,11 @@ public class CartRep {
     }
 
      // Get List Cart By Id User
-    public List<CartRes> getListCartById(int userId) {
+    public Cart getListCartById(String AT) {
         return guestsClient.get().uri(uriBuilder -> uriBuilder.path("/carts")
-                .queryParam("user_id", "eq." + userId)
-                .queryParam("select", "*,product:products(*)").build())
-                .retrieve().bodyToFlux(CartRes.class).collectList().block();
+                .queryParam("select", "*,items:cart_item(*)").build())
+                .header("Authorization", "Bearer " + AT)
+                .retrieve().bodyToFlux(Cart.class).blockFirst();
     }
 
     // Update Quantity Product
@@ -44,12 +43,11 @@ public class CartRep {
     }
 
     // Check Cart -> Null -> Create Cart
-    public Cart checkCartForUser(UUID userId, String AT) {
+    public Cart checkCartForUser(String AT) {
         return guestsClient.get().uri("/carts")
                 .header("Authorization", "Bearer " + AT)
                 .retrieve().bodyToFlux(Cart.class).blockFirst();
     }
-
     public Cart createCartForUser(UUID userId, String AT) {
         Map<String, UUID> body = Map.of(
                 "user_id", userId
@@ -68,8 +66,13 @@ public class CartRep {
         Map<String, Object> body = Map.of(
                 "cart_id", req.getCartId(),
                 "product_id", req.getProductId(),
+                "image", req.getImage(),
                 "quantity", req.getQuantity(),
-                "type", req.getType()
+                "type", req.getType(),
+                "name", req.getName(),
+                "price", req.getPrice(),
+                "originalPrice", req.getOriginalPrice(),
+                "currency", req.getCurrency()
         );
 
         return guestsClient.post().uri(uriBuilder -> uriBuilder.path("/cart_item").build())

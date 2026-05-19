@@ -12,15 +12,27 @@ public class CartItem {
     @JsonProperty("id")
     private long id;
 
-    @JsonProperty("cart_id")
-    private long cartId;
-
     @JsonProperty("quantity")
     private int quantity;
+
+    @JsonProperty("product_id")
+    private long productId;
+
+    @JsonProperty("image")
+    private String image;
 
     @JsonProperty("type")
     private String type;
 
-    @JsonProperty("product_id")
-    private long productId;
+    @JsonProperty("name")
+    private String name;
+
+    @JsonProperty("price")
+    private int price;
+
+    @JsonProperty("originalPrice")
+    private int originalPrice;
+
+    @JsonProperty("currency")
+    private String currency;
 }

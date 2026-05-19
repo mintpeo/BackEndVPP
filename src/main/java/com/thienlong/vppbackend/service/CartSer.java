@@ -6,7 +6,6 @@ import com.thienlong.vppbackend.model.dto.respone.CartRes;
 import com.thienlong.vppbackend.model.dto.respone.UserRes;
 import com.thienlong.vppbackend.model.entity.Cart;
 import com.thienlong.vppbackend.repository.CartRep;
-import com.thienlong.vppbackend.repository.UserRep;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +16,24 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CartSer {
     private final CartRep rep;
-    private final UserRep userRep;
+    private final UserSer userSer;
 
     // Get List Cart By Id
-    public List<CartRes> getCartById(int userId) {
-        return rep.getListCartById(userId);
+    public List<CartRes> getCartById(String AT) {
+        Cart cart = rep.getListCartById(AT);
+        return cart.getItems().stream().map(item -> {
+            CartRes cartRes = new CartRes();
+            cartRes.setId(item.getId());
+            cartRes.setType(item.getType());
+            cartRes.setImage(item.getImage());
+            cartRes.setQuantity(item.getQuantity());
+            cartRes.setProductId(item.getProductId());
+            cartRes.setName(item.getName());
+            cartRes.setPrice(item.getPrice());
+            cartRes.setOriginalPrice(item.getOriginalPrice());
+            cartRes.setCurrency(item.getCurrency());
+            return cartRes;
+        }).toList();
     }
 
     // Update Quantity Product
@@ -31,16 +43,16 @@ public class CartSer {
 
     // Get/Create User Cart
     private Cart checkCart(UUID userId, String AT) {
-        Cart cart = rep.checkCartForUser(userId, AT);
+        Cart cart = rep.checkCartForUser(AT);
         if (cart != null) return cart;
         // Create
         rep.createCartForUser(userId, AT); // 200OK -> ()
-        return rep.checkCartForUser(userId, AT);
+        return rep.checkCartForUser(AT);
     }
 
     // Add Product To Cart
     public boolean addToCart(CartReq req, String AT) {
-        UserRes user = userRep.getInfoUserByAT(AT);
+        UserRes user = userSer.getInfoUserByAT(AT);
         UUID userId = user.getId();
         Cart cart = checkCart(userId, AT); // Get/Create Cart
         if (cart.getId() != null) {
@@ -53,9 +65,7 @@ public class CartSer {
     }
 
     public Cart check(String AT) {
-        UserRes user = userRep.getInfoUserByAT(AT);
-        UUID userId = user.getId();
-        return rep.checkCartForUser(userId, AT);
+        return rep.checkCartForUser(AT);
     }
 
     // Delete Product In Cart

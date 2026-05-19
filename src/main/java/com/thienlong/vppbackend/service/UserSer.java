@@ -73,6 +73,11 @@ public class UserSer {
         return savedUser;
     }
 
+    // Get Info User By Access Token
+    public UserRes getInfoUserByAT(String AT) {
+        return rep.getInfoUserByAT(AT);
+    }
+
     public boolean changeInfoUser(InfoUserReq req) {
         InfoUserReq user = rep.saveInfoUserPath(req);
         return user != null;
